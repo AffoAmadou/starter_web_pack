@@ -1,113 +1,4 @@
-// require('dotenv').config()
-// const express = require('express')
-// const app = express()
-// const path = require('path')
-// const port = 3000
 
-// console.log(process.env.PRISMIC_ENDPOINT)
-
-// const Prismic = require('@prismicio/client')
-// const PrismicH = require('@prismicio/helpers');
-// const fetch = require('node-fetch');
-// // const PrismicH = require('@prismicio/helpers')
-// // import fetch from 'node-fetch'
-// // const { log } = require('console')
-// // const PrismicDOM = require('prismic-dom')
-
-// // const client = Prismic.Client(process.env.PRISMIC_ENDPOINT)
-
-// const initApi = req => {
-//     return Prismic.createClient(process.env.PRISMIC_ENDPOINT, {
-//         accessToken: process.env.PRISMIC_ACCESS_TOKEN,
-//         req,
-//         fetch
-//     })
-// }
-
-// const handleRequest = async (api) => {
-//     const [preloader, navigation, home, about, { results: collections }] =
-//       await Promise.all([
-//         // api.getSingle('meta'),
-//         api.getSingle('preloader'),
-//         api.getSingle('navigation'),
-//         api.getSingle('home'),
-//         api.getSingle('about'),
-//         api.query(Prismic.Predicates.at('document.type', 'collection'), {
-//           fetchLinks: 'product.image',
-//         }),
-//       ]);
-// // const handleLinkResolver = (doc) => {
-
-// //     return '/'
-// // }
-
-
-// // app.use((req, res, next) => {
-// //     res.locals.ctx = {
-// //         endpoint: process.env.PRISMIC_ENDPOINT,
-// //         linkResolver: handleLinkResolver
-// //     }
-// //     res.locals.PrismicDOM = PrismicDOM
-// //     next()
-// // })
-
-// // app.use((req, res, next) => {
-// //     res.locals.ctx = {
-// //        PrismicH,
-// //     };
-// //     next()
-// // })
-
-
-// app.set('views', path.join(__dirname, 'views'))
-// app.set('view engine', 'pug')
-
-// app.get('/', async (req, res) => {
-//     //!   res.send('Hello World!')
-
-//     res.render('pages/home')
-// })
-
-// app.get('/about', async (req, res) => {
-//     // initApi(req).then(api => {
-//     //     api.query(
-//     //         Prismic.Predicates.at('document.type', 'about')
-//     //     ).then(response => {
-//     //         // const { results } = response
-//     //         // const [about] = results
-
-//     //          console.log(response)
-
-//     //         res.render('pages/about',{
-//     //             document: response.results[0]
-//     //         })
-//     //     })
-//     // })
-//     // const document = await client.getSingle('About')
-//     // log(document);
-//     // res.render('pages/about')
-//     // // const document = await client.getFirst()
-//     // // res.render('page', { document })
-
-//     const api = await initApi(req);
-//     const defaults = await handleRequest(api);
-
-//     res.render('pages/about', {
-//         ...defaults,
-//     });
-// })
-
-// app.get('/detail/:uid', async (req, res) => {
-//     res.render('pages/detail')
-// })
-
-// app.get('/collection', async (req, res) => {
-//     res.render('pages/collection')
-// })
-
-// app.listen(port, () => {
-//     console.log(`Example app listening on port ${port}`)
-// })
 
 // //*Creazione del backend che gestisce l'indirizzamento delle pagine
 
@@ -180,12 +71,12 @@ app.use((req, res, next) => {
     return index === 0
       ? 'One'
       : index === 1
-      ? 'Two'
-      : index === 2
-      ? 'Three'
-      : index === 3
-      ? 'Four'
-      : '';
+        ? 'Two'
+        : index === 2
+          ? 'Three'
+          : index === 3
+            ? 'Four'
+            : '';
   };
 
   next();
@@ -250,7 +141,7 @@ const handleRequest = async (api) => {
 app.get('/', async (req, res) => {
   const api = await initApi(req);
   const defaults = await handleRequest(api);
-
+console.log(defaults.home)
   res.render('pages/home', {
     ...defaults,
   });
@@ -259,17 +150,27 @@ app.get('/', async (req, res) => {
 app.get('/about', async (req, res) => {
   const api = await initApi(req);
   const defaults = await handleRequest(api);
+  console.log(defaults.about)
 
+  //   const about =defaults.about
+  //  console.log(about)
   res.render('pages/about', {
     ...defaults,
   });
 });
 
-app.get('/collection', async (req, res) => {
+app.get('/collections', async (req, res) => {
   const api = await initApi(req);
   const defaults = await handleRequest(api);
-// console.log(defaults.preloader.data)
-  res.render('pages/collection', {
+  // console.log(defaults.collections)
+
+// defaults.collections.forEach(collection=>{
+//   console.log(collection.data.products[0].products_product)
+//   console.log("riopoipopopoppmmuzuzuznnnnnnavFEWFWEFWEFEWFEWFEW")
+// })
+
+// console.log(collections)
+  res.render('pages/collections', {
     ...defaults,
   });
 });
@@ -283,7 +184,7 @@ app.get('/detail/:uid', async (req, res) => {
   const product = await api.getByUID('product', req.params.uid, {
     fetchLinks: 'collection.title',
   });
-
+  console.log(product)
   res.render('pages/detail', {
     ...defaults,
     product,
