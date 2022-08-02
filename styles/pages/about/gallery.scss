@@ -1,12 +1,13 @@
 .about__gallery {
-  height: 70.6rem;
-  position: relative;
+  height: 58.6rem;
+  margin: 15rem 0;
   overflow: hidden;
   pointer-events: none;
-   visibility: hidden;
+  position: relative;
+  // visibility: hidden;
 
   &:first-child {
-    margin-bottom: 0;
+    margin-top: 0;
   }
 
   &:last-child {

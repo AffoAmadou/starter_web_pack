@@ -1,6 +1,6 @@
 .home {
   @extend %center;
-  // @extend %page;
+  @extend %page;
 
   // background: $color-contessa;
   // color: $color-white;

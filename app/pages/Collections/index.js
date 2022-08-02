@@ -1,12 +1,14 @@
+import { each } from "lodash";
 import Page from "../../classes/Page";
 
-export default class Collections extends Page{
-    constructor(){
+export default class Collections extends Page {
+    constructor() {
         super({
-            id:'collections'
+            id: 'collections',
+            element:'.collections'
         })
-        console.log("apCOLLp")
     }
 
-    
+
+
 }
