@@ -121,7 +121,7 @@ export default class Page {
 
   createPreloader() {
     this.preloaders = map(this.elements.preloaders, element => {
-      return new AsyncLoad({element})
+      return new AsyncLoad({ element })
     })
   }
 
@@ -150,7 +150,7 @@ export default class Page {
 
   hide() {
     return new Promise(resolve => {
-      this.removeEventListeners()
+      this.destroy()
 
       this.animationOut = GSAP.timeline()
 
@@ -161,6 +161,9 @@ export default class Page {
     })
   }
 
+  destroy() {
+    this.removeEventListeners()
+  }
   //* smoothscroll 
   onMouseWheel(event) {
 

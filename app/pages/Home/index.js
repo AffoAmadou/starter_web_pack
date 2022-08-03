@@ -1,5 +1,7 @@
 import Page from "../../classes/Page";
 
+import Button from "../../classes/Button";
+
 export default class Home extends Page {
   constructor() {
     super({
@@ -13,7 +15,13 @@ export default class Home extends Page {
   }
   create() {
     super.create()
+    this.link = new Button({
+      element: this.elements.link
+    })
+  }
 
-    this.elements.link.addEventListener('click', _ => console.log('BITCH'))
+  destroy(){
+    super.destroy()
+    this.link.removeEventListeners()
   }
 }

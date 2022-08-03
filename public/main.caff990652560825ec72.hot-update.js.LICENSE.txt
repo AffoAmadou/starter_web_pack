@@ -1,0 +1,41 @@
+/*! ./components/Navigation */
+
+/*! ./components/Preloader */
+
+/*! lodash/each */
+
+/*! pages/About */
+
+/*! pages/Collections */
+
+/*! pages/Detail */
+
+/*! pages/Home */
+
+/*!**********************!*\
+  !*** ./app/index.js ***!
+  \**********************/
+
+//! ///////////////////////////////////////////////////////
+
+//! BISOGNA CAMBIARE ANCHE L ATTRIBUTO VISTO CHE E IL NOME DELLA PAGINA IMPORTANTE
+
+//! E LO INSERISCO NELLA PAGINA COS DA CAMBIARE QUANDO TUTTO É CARICATO FANTASTICOOOOOOOOOO
+
+//!CREO LA DIV IN CUI METTERE L HTML ESTRATTO
+
+//!IN QUESTO MODO AL CLICK NON MI MANDA DIRETTAMENTE NELL'ALTRA PAGINA
+
+//!INSERISCO LA PAGINA IN CUI SONO ATTUALMENTE
+
+//!QUESTO CONTIENE TUTTO L HTML
+
+//!QUI PRENDO DA DIV (SOPRA) IL TAG DA CONTENTUTO NEL CONTENT VISTO CHE OGNI PAGINA HA CONTENT COSI DA NON INSERIRE TUTTI I TAG HTML META ETC...
+
+//!URL SARA IL LINK DEL BOTTONE CLICCATO NEL METODO SOTTO
+
+//!block variables      - var template = 'home'   block content  QUESTA PARTE DEL FILE PUG
+
+//!per cabmio link nella barra
+
+//!{LO CHIAMO QUIIIIIIII ONCHANGE}

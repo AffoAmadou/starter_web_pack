@@ -18,6 +18,8 @@
  * @author: Jack Doyle, jack@greensock.com
 */
 
+/*! ../../classes/Button */
+
 /*! ../../classes/Page */
 
 /*! ../animations/Label */
@@ -403,6 +405,10 @@
 /*!*****************************!*\
   !*** ./app/utils/colors.js ***!
   \*****************************/
+
+/*!*******************************!*\
+  !*** ./app/classes/Button.js ***!
+  \*******************************/
 
 /*!*******************************!*\
   !*** ./app/classes/Colors.js ***!
@@ -1185,6 +1191,8 @@
 //!block variables      - var template = 'home'   block content  QUESTA PARTE DEL FILE PUG
 
 //!loadash import
+
+//!per cabmio link nella barra
 
 //!senno é una lista node che trsformo in elemento semplice
 

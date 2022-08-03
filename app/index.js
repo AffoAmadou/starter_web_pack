@@ -10,7 +10,7 @@ import Navigation from './components/Navigation'
 class App {
     constructor() {
         this.createContent()
-        
+
         this.createPreloader()
         this.createNavigation()
         this.createPages()
@@ -57,6 +57,13 @@ class App {
         this.page.show()
     }
 
+    onPopState() {
+        this.onChange(
+            {
+                url: window.location.pathname, //!per cabmio link nella barra
+                push: false
+            })
+    }
 
     //! ///////////////////////////////////////////////////////
     update() {
@@ -83,7 +90,7 @@ class App {
     //? ////////////////////////////////INIZIO//////////////////////////////////////////////////////////////////////
     //*  ////////////////////////////////INIZIO//////////////////////////////////////////////////////////////////////
 
-    async onChange(url) { //!URL SARA IL LINK DEL BOTTONE CLICCATO NEL METODO SOTTO
+    async onChange(url, push = true) { //!URL SARA IL LINK DEL BOTTONE CLICCATO NEL METODO SOTTO
 
 
         await this.page.hide() //*ANIMAZIONE DI USCITA
@@ -96,6 +103,12 @@ class App {
 
             const div = document.createElement('div') //!CREO LA DIV IN CUI METTERE L HTML ESTRATTO
             div.innerHTML = html
+
+            if (push) {
+                window.history.pushState({}, '', url) //! CAMBIO LINK !!!!!!!!!!!
+            }
+
+
 
             const divContent = div.querySelector('.content') //!QUI PRENDO DA DIV (SOPRA) IL TAG DA CONTENTUTO NEL CONTENT VISTO CHE OGNI PAGINA HA CONTENT COSI DA NON INSERIRE TUTTI I TAG HTML META ETC...
 
@@ -126,6 +139,7 @@ class App {
 
     addEventListeners()//!Metodo per update laltezza dello scroll nelle pagine
     {
+        window.addEventListener('popstate', this.onPopState.bind(this))
         window.addEventListener('resize', this.onResize.bind(this))
     }
 
@@ -138,7 +152,7 @@ class App {
                 event.preventDefault() //!IN QUESTO MODO AL CLICK NON MI MANDA DIRETTAMENTE NELL'ALTRA PAGINA
 
                 const { href } = link
-                this.onChange(href)  //!{LO CHIAMO QUIIIIIIII ONCHANGE}
+                this.onChange({ url: href })  //!{LO CHIAMO QUIIIIIIII ONCHANGE}
             }
         })
     }
