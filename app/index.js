@@ -103,6 +103,7 @@ class App {
 
 
             this.template = divContent.getAttribute('data-template')
+
             this.content.setAttribute('data-template', this.template) //! BISOGNA CAMBIARE ANCHE L ATTRIBUTO VISTO CHE E IL NOME DELLA PAGINA IMPORTANTE
             // console.log(html)
 

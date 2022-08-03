@@ -28,6 +28,8 @@
 
 /*! ../classes/Animation */
 
+/*! ../classes/Colors */
+
 /*! ../classes/Components */
 
 /*! ../modules/logger/index.js */
@@ -35,6 +37,8 @@
 /*! ../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */
 
 /*! ../utils/log.js */
+
+/*! ./AsyncLoad */
 
 /*! ./CSSPlugin.js */
 
@@ -400,6 +404,10 @@
   !*** ./app/utils/colors.js ***!
   \*****************************/
 
+/*!*******************************!*\
+  !*** ./app/classes/Colors.js ***!
+  \*******************************/
+
 /*!*********************************!*\
   !*** ./app/animations/Label.js ***!
   \*********************************/
@@ -414,6 +422,10 @@
 
 /*!**********************************!*\
   !*** ./app/classes/Animation.js ***!
+  \**********************************/
+
+/*!**********************************!*\
+  !*** ./app/classes/AsyncLoad.js ***!
   \**********************************/
 
 /*!**********************************!*\

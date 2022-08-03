@@ -9,6 +9,10 @@ import Title from '../animations/Title'
 import Paragraph from '../animations/Paragraph'
 import Label from '../animations/Label'
 
+import { ColorsManager } from '../classes/Colors'
+
+import AsyncLoad from './AsyncLoad'
+
 export default class Page {
   constructor({ id, element, elements = {}, }) //!elements é un oggetto
   {
@@ -18,7 +22,8 @@ export default class Page {
       animationTitles: '[data-animation="title"]',
       animationsParagraphs: '[data-animation="paragraph"]',
       animationsLabels: '[data-animation="label"]',
-      animationsHighlights: '[data-animation="highlight"]'
+      animationsHighlights: '[data-animation="highlight"]',
+      preloaders: '[data-src]'
 
     }
 
@@ -65,6 +70,7 @@ export default class Page {
     })
 
     this.createAnimations()
+    this.createPreloader()
   }
 
   createAnimations() {
@@ -101,22 +107,34 @@ export default class Page {
 
     this.animations.push(...this.animationsLabels)
 
-      //!HIGHLIGHTS
-      this.animationsHighlights = map(this.elements.animationsHighlights, element => {
-        return new Label({
-          element
-        })
-  
+    //!HIGHLIGHTS
+    this.animationsHighlights = map(this.elements.animationsHighlights, element => {
+      return new Label({
+        element
       })
-  
-  
-      this.animations.push(...this.animationsHighlights)
+
+    })
+
+
+    this.animations.push(...this.animationsHighlights)
+  }
+
+  createPreloader() {
+    this.preloaders = map(this.elements.preloaders, element => {
+      return new AsyncLoad({element})
+    })
   }
 
   show() { //!ANIMAZIONE DI ENTRATA
     return new Promise(resolve => {
-      this.animationIn = GSAP.timeline()
 
+      ColorsManager.change({
+        backgroundColor: this.element.getAttribute('data-background'),
+        color: this.element.getAttribute('data-color'),
+
+      })
+      this.animationIn = GSAP.timeline()
+      console.log("colore")
       this.animationIn.fromTo(this.element, {
         autoAlpha: 0
       }, {
@@ -142,8 +160,6 @@ export default class Page {
       })
     })
   }
-
-
 
   //* smoothscroll 
   onMouseWheel(event) {
