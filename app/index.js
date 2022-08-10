@@ -5,6 +5,7 @@ import Home from 'pages/Home'
 import each from 'lodash/each'
 import Preloader from './components/Preloader'
 import Navigation from './components/Navigation'
+import Canvas from './components/Canvas'
 //* IMPORTO GLI INDEX PRESENTI NELLE CARTELLE
 
 class App {
@@ -14,22 +15,30 @@ class App {
         this.createPreloader()
         this.createNavigation()
         this.createPages()
-
+        this.createCanvas()
         this.addEventListeners()
         this.addLinkListeners()
 
         this.update()
     }
 
+    //!L'ORDINE IN CUI CHIAMO I METODI É IMPORTANTE
+
     createNavigation() {
         this.navigation = new Navigation({
             template: this.template
         })
     }
+
     createPreloader() {
         this.preloader = new Preloader()
         this.preloader.once('completed', this.onPreloaded.bind(this)) //! QUANDO COMPLETO RICHIAMO IL METODO SOTTO
     }
+
+    createCanvas() {
+        this.canvas = new Canvas() //!CREO IL CANVA E LO RESIZZO NEL RESIZE SOTTO
+    }
+
     createContent() {
 
         //!block variables      - var template = 'home'   block content  QUESTA PARTE DEL FILE PUG
@@ -67,6 +76,9 @@ class App {
 
     //! ///////////////////////////////////////////////////////
     update() {
+        if (this.canvas && this.canvas.update) {
+            this.canvas.update()
+        }
 
         if (this.page && this.page.update) {
             this.page.update()
@@ -77,6 +89,9 @@ class App {
 
     }
     onResize() {
+        if (this.canvas && this.canvas.onResize) {
+            this.canvas.onResize()
+        }
         if (this.page && this.page.onResize) {
             this.page.onResize()
         }
@@ -104,9 +119,9 @@ class App {
             const div = document.createElement('div') //!CREO LA DIV IN CUI METTERE L HTML ESTRATTO
             div.innerHTML = html
 
-            if (push) {
-                window.history.pushState({}, '', url) //! CAMBIO LINK !!!!!!!!!!!
-            }
+            // if (push) {
+            //     window.history.pushState({}, '', url) //! CAMBIO LINK !!!!!!!!!!!
+            // }
 
 
 
@@ -139,7 +154,7 @@ class App {
 
     addEventListeners()//!Metodo per update laltezza dello scroll nelle pagine
     {
-        window.addEventListener('popstate', this.onPopState.bind(this))
+        // window.addEventListener('popstate', this.onPopState.bind(this))
         window.addEventListener('resize', this.onResize.bind(this))
     }
 
@@ -152,7 +167,7 @@ class App {
                 event.preventDefault() //!IN QUESTO MODO AL CLICK NON MI MANDA DIRETTAMENTE NELL'ALTRA PAGINA
 
                 const { href } = link
-                this.onChange({ url: href })  //!{LO CHIAMO QUIIIIIIII ONCHANGE}
+                this.onChange(href)  //!{LO CHIAMO QUIIIIIIII ONCHANGE}
             }
         })
     }
