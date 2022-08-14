@@ -4,3 +4,8 @@
         background-color: antiquewhite;
     }
 }
+
+html {
+  $vw      : 100vw;
+  font-size: calc($vw / 1920px * 10px);
+}
