@@ -9,12 +9,14 @@ export default class Canvas {
         this.createRenderer()
         this.createCamera()
         this.createScene()
-        this.createCube()
+        this.createHome()
+        
 
     }
 
     createRenderer() {
-        this.renderer = new Renderer()
+        this.renderer = new Renderer({ alpha: true,
+            antialias: true})
 
         this.gl = this.renderer.gl //continuare a renderizzare
 
@@ -31,7 +33,9 @@ export default class Canvas {
     }
 
     createHome() {
-       this.home = new Home();
+       this.home = new Home({
+        gl: this.gl
+       });
     }
 
     onResize() {
@@ -44,10 +48,6 @@ export default class Canvas {
 
 
     update() {
-        
-        this.mesh.rotation.x += 0.01
-        this.mesh.rotation.y += 0.01
-
         this.renderer.render({
             camera: this.camera,
             scene: this.scene
