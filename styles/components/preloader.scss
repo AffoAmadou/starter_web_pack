@@ -1,0 +1,42 @@
+.preloader {
+  @extend %cover;
+  @extend %center;
+  background: $color-contessa;
+  color     : $color-white;
+  text-align: center;
+  z-index   : z('preloader');
+}
+
+.preloader__text {
+   font-size: 0;
+  // max-width: 66rem;
+  @extend %title-53;
+
+  span { //!é creato automaticamente dalla funzione nell utils text
+    display: inline-block; //!Senza questo le animazioni non funzionerebbero (Per l'altezza)
+    overflow: hidden;
+  }
+
+  span span {
+    @extend %title-53;
+  }
+}
+
+.preloader__number {
+  @extend %description-14;
+  position : absolute;
+
+  overflow : hidden;
+
+  bottom   : 5.1rem;
+  left     : 50%;
+  transform: translateX(-50%);
+
+  @include media('<phone') {
+    font-size: 2.5rem;
+  }
+}
+
+.preloader__number__text {
+  display: inline-block;
+}
