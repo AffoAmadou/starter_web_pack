@@ -10,25 +10,25 @@ export default class {
         this.geometry = geometry
     }
 
-    createTexture () {
-        const image = this.element
+    // createTexture () {
+    //     const image = this.element
     
-        this.texture = window.TEXTURES[image.getAttribute('data-src')]
-      }
+    //     this.texture = window.TEXTURES[image.getAttribute('data-src')]
+    //   }
     
-    createProgram({ vertex,
-        fragment,
-        uniforms: {
-            tMap: { value: this.texture }
-         }
-    }) 
+    // createProgram({ vertex,
+    //     fragment,
+    //     uniforms: {
+    //         tMap: { value: this.texture }
+    //      }
+    // }) 
 
-    createMesh() {
-        this.mesh = new Mesh(this.gl, {
-            geometry: this.geometry,
-            program: this.program
-        })
+    // createMesh() {
+    //     this.mesh = new Mesh(this.gl, {
+    //         geometry: this.geometry,
+    //         program: this.program
+    //     })
 
-        this.mesh.setParent(this.scene)
-    }
+    //     this.mesh.setParent(this.scene)
+    // }
 }
